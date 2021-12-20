@@ -1,2 +1,1 @@
-# Python - if/else, loops, functions
-Foundations - Higher-level programming ― Python
+This directory contains programs covering if, else & loops concepts as implemented in Pytyhon among many others.

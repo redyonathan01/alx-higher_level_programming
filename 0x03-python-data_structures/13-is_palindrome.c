@@ -1,42 +1,54 @@
 #include "lists.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <stddef.h>
 
 /**
- * is_palindrome- Checks if a singly linked list is a palindrome.
- * @head: Head pointer
- * Return: 0 if it is not a palindrome, 1 if it is a palindrome.
- */
+* list_len - finds no. of elements ina linked list.
+* @h: pointer to linked list.
+*
+* Return: number of elements in linked list.
+*/
+size_t list_len(listint_t *h)
+{
+	size_t  nodes = 0;
+
+	if (h == NULL)
+		return (0);
+	while (h != NULL)
+	{
+		nodes++;
+		h = h->next;
+	}
+	return (nodes);
+}
+
+/**
+* is_palindrome - checks if a singly linked list is a palindrome.
+* @head: double pointert to head of d-list.
+*
+* Return: 1 if palindrome, 0 otherwise.
+*/
 int is_palindrome(listint_t **head)
 {
-	listint_t *node;
-	int values[9999], i = 0, c = 0;
+	int *nArr, i = 0, j = 0, len = 0;
+	listint_t *temp;
 
-	if ((!*head) || (!head))
-	{
+	if (*head == NULL)
 		return (1);
-	}
-	node = *head;
-	if (!node->next)
+	temp = *head;
+	len = list_len(temp);
+	nArr = (int *)malloc(sizeof(int) * len);
+	if (nArr == NULL)
+		return (2);
+	temp = *head;
+	while (temp != NULL)
 	{
-		return (1);
+		nArr[j] = temp->n;
+		j++;
+		temp = temp->next;
 	}
-	while (node)
+	for (i = 0, j = len - 1; i < j; i++, j--)
 	{
-		values[i] = node->n;
-		node = node->next;
-		i++;
-	}
-	i--;
-	while (i >= 0 && c <= i)
-	{
-		if (values[i] != values[c])
-		{
+		if (nArr[i] != nArr[j])
 			return (0);
-		}
-		i--;
-		c++;
 	}
 	return (1);
 }
